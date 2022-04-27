@@ -1,0 +1,257 @@
+@charset "utf-8";
+/*CSS Document*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+#logo {
+    width: 20%;
+    display: inline;
+    position: relative;
+    vertical-align: top;
+    float: left;
+}
+#logo a:hover {
+    background-color: #333;
+}
+#portada {
+    width: 54%;
+    display: inline-block;
+    position: relative;
+}
+#login {
+    width: 19%;
+    float: right;
+    display: inline;
+    position: relative;
+    top: 2%;
+}
+#login input {
+    float: right;
+    margin: 10px;
+}
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    font-family: Verdana;;
+    font-weight: bold;
+}
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a, .topnav form {
+    display: inline-block;
+    position: relative;
+}
+.topnav form {
+    top: 10px;
+    margin-right: 5px;
+}
+.topnav form .search {
+    padding: 5px;
+    border: 3px solid;
+    margin-right: 0px;
+    border-radius: 10px 0px 0px 10px;
+    border-color: red;
+    font-weight: bold;
+}
+.topnav form .buscar {
+    padding: 5px;
+    border-radius: 0px 10px 10px 0px;
+    background-color: red;
+    border-color: red;
+    color: white;
+    font-weight: bold;
+}
+.fa.fa-fw.fa-search {
+    color: white;
+}
+.topnav a:hover {
+    background-color: rgb(252, 116, 116);
+    color: white;
+}
+.topnav a.active {
+    background-color: #ff0000;
+    color: white;
+}
+#menunav {
+    float: right;
+}
+.clear {
+    clear: both;
+}
+#bootstrap {
+    width: auto;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+#bootstrap .item.active {
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    opacity: 0.8; 
+}
+#bootstrap .carousel-caption {
+    bottom: 35%;   
+}
+footer {
+    background-color: rgb(131, 0, 7);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-family: Verdana;
+}
+footer hr {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+footer div {
+    padding: 0.5%;
+}
+#idioma {
+    color: white;
+    background-color: rgb(75, 147, 255);
+    display: inline-block;
+    width: 40%;
+}
+#idioma li {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+}
+footer li {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    margin: 15px;
+}
+footer li a {
+    color: white;
+}
+footer li a:hover {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+footer #redessociales {
+    font-size: 20px;
+}
+footer #redessociales img {
+    margin: 0 8px;
+}
+footer #empresascolaboradoras img {
+    display: inline-block;
+    position: relative;
+    width: 7%;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    section {
+        display: block;
+        width: 100%;
+    }
+    .container {
+        width: 100%;
+    }
+    #idioma {
+        display: inline-block;
+        width: 90%;
+    }
+}
+footer #empresascolaboradoras img {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+}
+@media screen and (max-width: 768px) {
+    #logo {
+        width: 100%;
+    }
+    #menunav, section, footer {
+        width: 100%;
+    }
+    .topnav #menunav a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .topnav form {
+        margin: 5%;
+    }
+    .topnav form .search {
+        padding: 5px;
+        border: 3px solid;
+        margin-right: 0px;
+        border-radius: 10px 0px 0px 10px;
+        border-color: red;
+        font-weight: bold;
+    }
+    .topnav form .buscar {
+        padding: 5px;
+        border-radius: 0px 10px 10px 0px;
+        background-color: red;
+        border-color: red;
+        color: white;
+        font-weight: bold;
+    }
+    .fa.fa-fw.fa-search {
+        color: white;
+    }
+    .anterior {
+        margin: 20px;
+        padding: 10px;
+        display: block;
+        width: 25%;
+        float: none;
+    }
+    .paginacion {
+        margin: 5px 0;
+    }
+    .paginacion ul {
+        list-style: none;
+        text-align: center;
+    }
+    .paginacion ul li {
+        display: inline-block;
+        margin-bottom: 5px;
+        width: 21%;
+    }
+    .paginacion ul li a {
+        display: block;
+        padding: 10px 20px;
+        color: #fff;
+        background: #6e0909;
+        text-decoration: none;
+    }
+    .siguiente {
+        margin: 20px;
+        padding: 10px;
+        display: block;
+        width: 25%;
+        float: none;
+    }
+    footer li {
+        display: block;
+        width: 100%;
+    }
+    footer #redessociales {
+        font-size: 15px;
+    }
+    footer #redessociales img {
+        font-size: 0 5px;
+    }
+    #idioma {
+        display: block;
+        width: 100%;
+    }
+    #idioma li {
+        display: block;
+        width: 100%;
+    }
+    footer #empresascolaboradoras img {
+        width: 25%;
+    }
+}
