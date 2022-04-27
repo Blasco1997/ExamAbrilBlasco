@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta charset="ISO-8859-1">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+    initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <meta name="keywords" description="Página web Restaurante Os Catasoles">
+    <title>FRIBURGO - Nuestra carta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="estilosmenu.css">
+    <script>
+        window.onload = function () {
+          // Variables
+          const baseDeDatos = [
+              {
+                  id: 1,
+                  nombre: 'Pizza margarita',
+                  precio: 5,
+                  imagen: 'imagesproductos/pizzamargarita.png'
+              },
+              {
+                  id: 2,
+                  nombre: 'Pizza con jamón york',
+                  precio: 5.5,
+                  imagen: 'imagesproductos/pizzaconjamonyork.png'
+              },
+              {
+                  id: 3,
+                  nombre: 'Pizza con atún, huevo y cebolla',
+                  precio: 5.75,
+                  imagen: 'imagesproductos/pizzaconatun.png'
+              },
+              {
+                  id: 4,
+                  nombre: 'Pizza con aceitunas',
+                  precio: 5.75,
+                  imagen: 'imagesproductos/pizzaconaceitunas.png'
+              },
+              {
+                  id: 5,
+                  nombre: 'Pizza Siciliana',
+                  precio: 5.75,
+                  imagen: 'imagesproductos/pizzasiciliana.png'
+              },
+              {
+                  id: 6,
+                  nombre: 'Pizza con champiñones',
+                  precio: 6,
+                  imagen: 'imagesproductos/pizzaconchampiñones.png'
+              },
+              {
+                  id: 7,
+                  nombre: 'Pizza con carne picada',
+                  precio: 6,
+                  imagen: 'imagesproductos/pizzaconcarnepicada.png'
+              },
+              {
+                  id: 8,
+                  nombre: 'Pizza con pollo',
+                  precio: 6.25,
+                  imagen: 'imagesproductos/pizzaconpollo.png'
+              },
+              {
+                  id: 9,
+                  nombre: 'Pizza con chorizo',
+                  precio: 6,
+                  imagen: 'imagesproductos/pizzaconchorizo.png'
+              },
+              {
+                  id: 10,
+                  nombre: 'Pizza Berciana',
+                  precio: 6.5,
+                  imagen: 'imagesproductos/pizzaberciana.png'
+              },
+              {
+                  id: 11,
+                  nombre: 'Pizza Asturiana',
+                  precio: 6.75,
+                  imagen: 'imagesproductos/pizzaasturiana.png'
+              },
+              {
+                  id: 12,
+                  nombre: 'Pizza con salmón',
+                  precio: 7,
+                  imagen: 'imagesproductos/pizzaconsalmon.png'
+              },
+              {
+                  id: 13,
+                  nombre: 'Pizza Marinera',
+                  precio: 9.5,
+                  imagen: 'imagesproductos/pizzamarinera.png'
+              },
+              {
+                  id: 14,
+                  nombre: 'Pizza Cuatro estaciones',
+                  precio: 8,
+                  imagen: 'imagesproductos/pizzacuatroestaciones.png'
+              },
+              {
+                  id: 15,
+                  nombre: 'Pizza Cuatro quesos',
+                  precio: 7.75,
+                  imagen: 'imagesproductos/pizzacuatroquesos.png'
+              },
+              {
+                  id: 16,
+                  nombre: 'Pizza Calzone',
+                  precio: 7.5,
+                  imagen: 'imagesproductos/pizzacalzone.png'
+              },
+              {
+                  id: 17,
+                  nombre: 'Pizza con Bacon',
+                  precio: 7.25,
+                  imagen: 'imagesproductos/pizzaconbacon.png'
+              },
+              {
+                  id: 18,
+                  nombre: 'Pizza con pimientos',
+                  precio: 5.75,
+                  imagen: 'imagesproductos/pizzaconpimientos.png'
+              },
+              {
+                  id: 19,
+                  nombre: 'Pizza Tropical',
+                  precio: 6.25,
+                  imagen: 'imagesproductos/pizzatropical.png'
+              },
+              {
+                  id: 20,
+                  nombre: 'Pizza Santa Bari',
+                  precio: 8.5,
+                  imagen: 'imagesproductos/pizzasantabari.png'
+              },
+              {
+                  id: 21,
+                  nombre: 'Pizza Frankfurt',
+                  precio: 7.25,
+                  imagen: 'imagesproductos/pizzafrankfurt.png'
+              },
+              {
+                  id: 22,
+                  nombre: 'Pizza Friburgo',
+                  precio: 9,
+                  imagen: 'imagesproductos/pizzafriburgo.png'
+              }
+          ];
+
+          let carrito = [];
+          let total = 0;
+          const DOMitems = document.querySelector('#items');
+          const DOMcarrito = document.querySelector('#carrito');
+          const DOMtotal = document.querySelector('#total');
+          const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+
+          // Funciones
+
+          /**
+          * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
+          */
+          function renderizarProductos() {
+              baseDeDatos.forEach((info) => {
+                  // Estructura
+                  const miNodo = document.createElement('div');
+                  miNodo.classList.add('card', 'col-sm-4');
+                  // Body
+                  const miNodoCardBody = document.createElement('div');
+                  miNodoCardBody.classList.add('card-body');
+                  // Titulo
+                  const miNodoTitle = document.createElement('h5');
+                  miNodoTitle.classList.add('card-title');
+                  miNodoTitle.textContent = info.nombre;
+                  // Imagen
+                  const miNodoImagen = document.createElement('img');
+                  miNodoImagen.classList.add('img-fluid');
+                  miNodoImagen.setAttribute('src', info.imagen);
+                  // Precio
+                  const miNodoPrecio = document.createElement('p');
+                  miNodoPrecio.classList.add('card-text');
+                  miNodoPrecio.textContent = info.precio + '€';
+                  // Boton 
+                  const miNodoBoton = document.createElement('button');
+                  miNodoBoton.classList.add('btn', 'btn-primary');
+                  miNodoBoton.textContent = '+';
+                  miNodoBoton.setAttribute('marcador', info.id);
+                  miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+                  // Insertamos
+                  miNodoCardBody.appendChild(miNodoImagen);
+                  miNodoCardBody.appendChild(miNodoTitle);
+                  miNodoCardBody.appendChild(miNodoPrecio);
+                  miNodoCardBody.appendChild(miNodoBoton);
+                  miNodo.appendChild(miNodoCardBody);
+                  DOMitems.appendChild(miNodo);
+              });
+          }
+
+          /**
+          * Evento para añadir un producto al carrito de la compra
+          */
+          function anyadirProductoAlCarrito(evento) {
+              // Anyadimos el Nodo a nuestro carrito
+              carrito.push(evento.target.getAttribute('marcador'))
+              // Calculo el total
+              calcularTotal();
+              // Actualizamos el carrito 
+              renderizarCarrito();
+
+          }
+
+          /**
+          * Dibuja todos los productos guardados en el carrito
+          */
+          function renderizarCarrito() {
+              // Vaciamos todo el html
+              DOMcarrito.textContent = '';
+              // Quitamos los duplicados
+              const carritoSinDuplicados = [...new Set(carrito)];
+              // Generamos los Nodos a partir de carrito
+              carritoSinDuplicados.forEach((item) => {
+                  // Obtenemos el item que necesitamos de la variable base de datos
+                  const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                      // ¿Coincide las id? Solo puede existir un caso
+                      return itemBaseDatos.id === parseInt(item);
+                  });
+                  // Cuenta el número de veces que se repite el producto
+                  const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+                      // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+                      return itemId === item ? total += 1 : total;
+                  }, 0);
+                  // Creamos el nodo del item del carrito
+                  const miNodo = document.createElement('li');
+                  miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+                  miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}€`;
+                  // Boton de borrar
+                  const miBoton = document.createElement('button');
+                  miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+                  miBoton.textContent = 'X';
+                  miBoton.style.marginLeft = '1rem';
+                  miBoton.dataset.item = item;
+                  miBoton.addEventListener('click', borrarItemCarrito);
+                  // Mezclamos nodos
+                  miNodo.appendChild(miBoton);
+                  DOMcarrito.appendChild(miNodo);
+              });
+          }
+
+          /**
+          * Evento para borrar un elemento del carrito
+          */
+          function borrarItemCarrito(evento) {
+              // Obtenemos el producto ID que hay en el boton pulsado
+              const id = evento.target.dataset.item;
+              // Borramos todos los productos
+              carrito = carrito.filter((carritoId) => {
+                  return carritoId !== id;
+              });
+              // volvemos a renderizar
+              renderizarCarrito();
+              // Calculamos de nuevo el precio
+              calcularTotal();
+          }
+
+          /**
+          * Calcula el precio total teniendo en cuenta los productos repetidos
+          */
+          function calcularTotal() {
+              // Limpiamos precio anterior
+              total = 0;
+              // Recorremos el array del carrito
+              carrito.forEach((item) => {
+                  // De cada elemento obtenemos su precio
+                  const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                      return itemBaseDatos.id === parseInt(item);
+                  });
+                  total = total + miItem[0].precio;
+              });
+              // Renderizamos el precio en el HTML
+              DOMtotal.textContent = total.toFixed(2);
+          }
+
+          /**
+          * Varia el carrito y vuelve a dibujarlo
+          */
+          function vaciarCarrito() {
+              // Limpiamos los productos guardados
+              carrito = [];
+              // Renderizamos los cambios
+              renderizarCarrito();
+              calcularTotal();
+          }
+
+          // Eventos
+          DOMbotonVaciar.addEventListener('click', vaciarCarrito);
+
+          // Inicio
+          renderizarProductos();
+
+
+        } 
+    </script>
+</head>
+<body>
+    <div id="pagina">
+        <header id="cabecera">
+            <nav class="topnav">
+                <div id="logo">
+                    <img src="images/Friburgo.PNG" width="100%" alt="Logo">
+                </div>
+                <div id="menunav">
+                    <a href="index.html"><i class="fa fa-fw fa-home"></i>INICIO</a>
+                    <a class="active" href="#"><i class="fa fa-fw fa-file"></i>MENÚ</a>
+                    <a href="contacto.html"><i class="fa fa-fw fa-envelope"></i>CONTACTO</a>
+                    <form action="resultadobusqueda.php" method="get">
+                        <i class="fa fa-fw fa-search"></i><input type="search" class="search" name="buscar" on >
+                        <input type="submit" class="buscar" name="buscar" value="BUSCAR">
+                    </form>
+                </div>
+            </nav> 
+        </header>
+        <div class="clear"></div>
+        <section id="cuerpo">
+            <h1>NUESTRA CARTA</h1>
+            <article class="articulo">
+                <h2>PIZZAS</h2>
+                <img src="images/pizza.png" width="100%" alt="Pizzas">
+                <div class="clear"></div>
+                <fieldset> 
+                <legend>Elección del pedido</legend>
+                <div class="container">
+                    <div class="row">
+                        <!-- Elementos generados a partir del JSON -->
+                        <main id="items" class="col-sm-15 row"></main>
+                        <!-- Carrito -->
+                        <aside class="col-sm-4">
+                            <h2>Carrito</h2>
+                            <!-- Elementos del carrito -->
+                            <ul id="carrito" class="list-group"></ul>
+                            <hr>
+                            <!-- Precio total -->
+                            <p class="text-right">Total: <span id="total"></span>&euro;</p>
+                            <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+                            <form action="enviarpedido.php" method="post">
+                            <button id="enviarpedido" class="btn btn-danger">Enviar pedido</button>
+                            </form>
+                        </aside>
+                    </div>
+                </div>                        
+                </fieldset>
+            </article>  
+            <div class="paginacion">
+                <div class="anterior" style="background-color: white;">
+                </div>
+                <div class="listadohtml">
+                <ul>
+                    <li><a href="#" class="active">1</a></li>
+                    <li><a href="pagina2.html">2</a></li>
+                    <li><a href="pagina3.html">3</a></li>
+                    <li><a href="pagina4.html">4</a></li>
+                    <li><a href="pagina5.html">5</a></li>
+                    <li><a href="pagina6.html">6</a></li>
+                    <li><a href="pagina7.html">7</a></li>
+                    <li><a href="pagina8.html">8</a></li>
+                    <li><a href="pagina9.html">9</a></li>
+                </ul>
+                </div>
+                <div class="siguiente">
+                    <a href="pagina2.html">Siguiente &raquo;</a>
+                </div>
+            </div>
+        </section>
+        <footer id="piedepagina">
+            <div id="redessociales">
+                <h2>REDES SOCIALES</h2>
+                <b>Síguenos en:</b>
+                <b><a href="https://www.facebook.com/"><img src="images/facebook.png" width="50" alt="Facebook"></a></b>
+                <b><a href="https://www.twitter.com/"><img src="images/twitter.png" width="50" alt="Twitter"></a></b>
+                <b><a href="https://www.linkedin.com/"><img src="images/linkedin.png" width="50" alt="Linkedin"></a></b>
+                <b><a href="https://www.instagram.com/"><img src="images/instagram.png" width="50" alt="Instagram"></a></b>
+            </div>
+            <hr>
+            <div id="idioma">
+                <ul>
+                    <li><i class="fa fa-fw fa-globe"></i>Idioma:</li>
+                    <li><a href="menugalego.html"><b>Galego</b></a></li>
+                    <li><b>Español</b></li>
+                    <li><a href="menuenglish.html"><b>English</b></a></li>
+                </ul>
+            </div>
+            <hr>
+            <div id="configuracionpagina">
+                <ul>
+                    <li><a href="https://support.google.com/sites/answer/6372865?hl=es">Configuración y ayuda</a></li>
+                    <li><a href="https://ads.google.com/">Publicidad</a></li>
+                    <li><a href="https://about.google/contact-google/?hl=es">Contacto</a></li>
+                    <li><a href="https://www.google.com/intl/es_ALL/help/attribution_maps/">Aviso legal</a></li>
+                    <li><a href="https://policies.google.com/technologies/cookies?hl=es">Política de Cookies</a></li>
+                    <li><a href="https://policies.google.com/privacy?hl=es">Política de Privacidad</a></li>
+                </ul>
+            </div>
+            <hr>
+            <div id="empresascolaboradoras">
+                <a href="https://www.carrefour.es/"><img src="images/logocarrefour.png" width="100%" alt="Logo Carrefour"></a>
+                <a href="https://www.elcorteingles.es/"><img src="images/logoelcorteingles.png" width="100%" alt="Logo El Corte Inglés"></a>
+                <a href="https://www.caixabank.es/"><img src="images/logocaixabank.png" width="100%" alt="Logo CaixaBank"></a>
+                <a href="https://www.santander.com/"><img src="images/logobancosantander.png" width="100%" alt="Logo Banco Santander"></a>
+                <a href="https://www.cepsa.com/"><img src="images/logcepsa.png" width="100%" alt="Logo Cepsa"></a>
+            </div>
+            <hr>
+            <div id="paginaswebsimilares">
+                <ul>
+                    <li><a href="https://www.glovoapp.com/">Pide un Glovo</a></li>
+                    <li><a href="https://www.deliveroo.es/">Deliveroo</a></li>
+                    <li><a href="https://www.ubereats.com/">Uber Eats</a></li>
+                    <li><a href="https://www.just-eat.es/">Just Eat</a></li>
+                    <li><a href="https://www.obviouseat.com/">Obvious Eat</a></li>
+                    <li><a href="https://www.takeaway.com/">Takeaway.com</a></li>
+                </ul>
+            </div>
+            <div id="copyright">
+                &copy; 2021. Microsoft Visual Studio Code
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
